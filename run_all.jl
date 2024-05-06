@@ -2,6 +2,7 @@ using Pkg
 using Trixi: trixi_include
 Pkg.add("Git")
 run(`$(git()) clone https://github.com/arpit-babbar/Tenkai.jl`)
+Pkg.activate("Tenkai.jl")
 include("dmr/elixir_double_mach.jl")
 include("dmr/run_double_mach_reflection.jl")
 include("kh/elixir_euler_kelvin_helmholtz_instability.jl")
