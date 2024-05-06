@@ -63,6 +63,7 @@ alive_callback = AliveCallback(analysis_interval=100)
 save_solution = SaveSolutionCallback(interval=10000,
                                      save_initial_solution=true,
                                      save_final_solution=true,
+				     output_directory = joinpath(@__DIR__, "out"),
                                      solution_variables=cons2prim)
 
 

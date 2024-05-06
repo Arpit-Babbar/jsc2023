@@ -97,7 +97,8 @@ stepsize_callback = StepsizeCallbackM2000(cfl = trixi2lw(0.5, solver))
 save_solution = SaveSolutionCallback(interval=10000000000,
                                      save_initial_solution=true,
                                      save_final_solution=true,
-                                     solution_variables=cons2prim)
+                                     solution_variables=cons2prim,
+				     output_directory = joinpath(@__DIR__, "out"))
 
 callbacks = CallbackSet(summary_callback,
                         analysis_callback, alive_callback,

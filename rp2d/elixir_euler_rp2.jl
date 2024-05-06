@@ -123,7 +123,9 @@ alive_callback = AliveCallback(analysis_interval=100)
 save_solution = SaveSolutionCallback(interval=1000,
                                      save_initial_solution=true,
                                      save_final_solution=true,
-                                     solution_variables=cons2prim)
+                                     solution_variables=cons2prim,
+				     output_directory = joinpath(@__DIR__, "out")
+				     )
 stepsize_callback = StepsizeCallback(cfl=trixi2lw(0.98, solver))
 
 callbacks = CallbackSet(summary_callback,

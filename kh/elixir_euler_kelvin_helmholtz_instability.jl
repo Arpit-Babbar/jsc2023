@@ -57,7 +57,7 @@ solver = DGSEM(basis, surface_flux, volume_integral)
 coordinates_min = ( 0.0,  0.0)
 coordinates_max = ( 1.0,  1.0)
 mesh = TreeMesh(coordinates_min, coordinates_max,
-                initial_refinement_level=8,
+                initial_refinement_level=9,
                 n_cells_max=400_000)
 
 #=
@@ -77,7 +77,7 @@ ode = semidiscretize(semi, tspan)
 
 summary_callback = SummaryCallback()
 
-analysis_interval = 100
+analysis_interval = 1000
 analysis_callback = AnalysisCallback(semi, interval=analysis_interval)
 
 alive_callback = AliveCallback(analysis_interval=analysis_interval)
@@ -85,7 +85,9 @@ alive_callback = AliveCallback(analysis_interval=analysis_interval)
 save_solution = SaveSolutionCallback(interval=1000000,
                                      save_initial_solution=true,
                                      save_final_solution=true,
-                                     solution_variables=cons2prim)
+                                     solution_variables=cons2prim,
+				     output_directory = joinpath(@__DIR__, "out")
+				     )
 
 stepsize_callback = StepsizeCallback(cfl = trixi2lw(0.98, solver))
 
